@@ -53,13 +53,13 @@ public class RecipeStack {
     }
 
     public Duration getPreparationTime() {
-        if(preparationTime.isNegative() || preparationTime.isZero()) {
-            throw new IllegalArgumentException("The duration of a recipe cannot be zero or a negative number. Enter a positive value.");
-        }
         return preparationTime;
     }
 
     public void setPreparationTime(Duration preparationTime) {
+        if(preparationTime.isNegative() || preparationTime.isZero()) {
+            throw new IllegalArgumentException("The duration of a recipe cannot be zero or a negative number. Enter a positive value.");
+        }
         this.preparationTime = preparationTime;
     }
 
