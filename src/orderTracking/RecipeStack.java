@@ -27,8 +27,10 @@ public class RecipeStack {
         }
         this.preparationTime = preparationTime;
 
-        this.imageUrl = imageUrl;
+        // Check if imageUrl is null or empty, if so, set it to "blank"
+        this.imageUrl = (imageUrl == null || imageUrl.isEmpty()) ? "blank" : imageUrl;
     }
+
 
     public String getTitle() {
         return title;
