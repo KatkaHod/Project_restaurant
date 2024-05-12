@@ -6,16 +6,16 @@ import java.net.MalformedURLException;
 import java.net.URL;
 
 public class RecipeStack {
-    private String title;
+    private String mealName;
     private BigDecimal price;
     private  Duration preparationTime;
     private  String imageUrl;
 
-    public RecipeStack(String title, BigDecimal price, Duration preparationTime, String imageUrl) {
-        if(title == null) {
+    public RecipeStack(String mealName, BigDecimal price, Duration preparationTime, String imageUrl) {
+        if(mealName == null) {
             throw new NullPointerException("The title is not allowed to be a null value");
         }
-        this.title = title;
+        this.mealName = mealName;
 
         if(price.compareTo(BigDecimal.ZERO) <= 0) {
             throw  new IllegalArgumentException("The value must be positive!");
@@ -32,15 +32,15 @@ public class RecipeStack {
     }
 
 
-    public String getTitle() {
-        return title;
+    public String getMealName() {
+        return mealName;
     }
 
-    public void setTitle(String title) {
-        if(title == null) {
+    public void setMealName(String mealName) {
+        if(mealName == null) {
             throw new NullPointerException("The title is not allowed to be a null value");
         }
-        this.title = title;
+        this.mealName = mealName;
     }
 
     public BigDecimal getPrice() {
@@ -86,7 +86,7 @@ public class RecipeStack {
     @Override
     public String toString() {
         return "RecipeStack{" +
-                "title='" + title + '\'' +
+                "title='" + mealName + '\'' +
                 ", price=" + price +
                 ", preparationTime=" + preparationTime +
                 ", imageUrl='" + imageUrl + '\'' +
