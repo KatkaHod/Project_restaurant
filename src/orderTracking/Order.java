@@ -3,17 +3,17 @@ package orderTracking;
 import java.time.LocalDateTime;
 import java.util.List;
 
-public class Orders {
+public class Order {
     private Dish mealName;
     private int table;
     private int quantity;
     private LocalDateTime orderedTime;
     private LocalDateTime fulfilmentTime; //the time - order is completed
     private boolean paid;
-    private List<Orders> listOfOrders = new java.util.ArrayList<>();
+    private List<Order> listOfOrders = new java.util.ArrayList<>();
 
 
-    public Orders(Dish mealName, int quantity) {
+    public Order(Dish mealName, int quantity) {
         this.mealName = mealName;
         this.quantity = quantity;
         this.orderedTime = LocalDateTime.now();
@@ -31,7 +31,7 @@ public class Orders {
 
     @Override
     public String toString() {
-        return "Orders{" +
+        return "Order{" +
                 "mealName=" + mealName +
                 ", table=" + table +
                 ", quantity=" + quantity +
