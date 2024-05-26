@@ -5,13 +5,13 @@ import java.time.Duration;
 import java.net.MalformedURLException;
 import java.net.URL;
 
-public class RecipeStack {
+public class Dish {
     private String mealName;
     private BigDecimal price;
     private  Duration preparationTime;
     private  String imageUrl;
 
-    public RecipeStack(String mealName, BigDecimal price, Duration preparationTime, String imageUrl) {
+    public Dish(String mealName, BigDecimal price, Duration preparationTime, String imageUrl) {
         if(mealName == null) {
             throw new NullPointerException("The title is not allowed to be a null value");
         }
@@ -85,7 +85,7 @@ public class RecipeStack {
 
     @Override
     public String toString() {
-        return "RecipeStack{" +
+        return "Dish{" +
                 "title='" + mealName + '\'' +
                 ", price=" + price +
                 ", preparationTime=" + preparationTime +

@@ -1,11 +1,10 @@
 package orderTracking;
 
 import java.time.LocalDateTime;
-import java.util.ArrayList;
 import java.util.List;
 
 public class Orders {
-    private RecipeStack mealName;
+    private Dish mealName;
     private int table;
     private int quantity;
     private LocalDateTime orderedTime;
@@ -14,7 +13,7 @@ public class Orders {
     private List<Orders> listOfOrders = new java.util.ArrayList<>();
 
 
-    public Orders(RecipeStack mealName, int quantity) {
+    public Orders(Dish mealName, int quantity) {
         this.mealName = mealName;
         this.quantity = quantity;
         this.orderedTime = LocalDateTime.now();

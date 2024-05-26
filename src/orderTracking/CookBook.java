@@ -3,37 +3,37 @@ package orderTracking;
 import java.util.ArrayList;
 import java.util.List;
 
-public class RecipeStackManager {
-    private List <RecipeStack> listOfRecipes = new java.util.ArrayList<>();
+public class CookBook {
+    private List <Dish> cookBook = new java.util.ArrayList<>();
 
 
     //return new array list (copy)
-    public List<RecipeStack> getPlantsList() {
-        return new ArrayList<>(listOfRecipes);
+    public List<Dish> getPlantsList() {
+        return new ArrayList<>(cookBook);
     }
 
     //add a recipe to the Arraylist
-    public void addRecipe(RecipeStack newRecipe) {
-        listOfRecipes.add(newRecipe);
+    public void addRecipe(Dish newRecipe) {
+        cookBook.add(newRecipe);
     }
 
     //***Add*** multiple recipes at once
-    public void addRecipes(List<RecipeStack> newRecipes){
-        this.listOfRecipes.addAll(newRecipes);
+    public void addRecipes(List<Dish> newRecipes){
+        this.cookBook.addAll(newRecipes);
     }
 
 
     //***remove*** recipe from the arrayList
     public void removeRecipe(int index) {
-        if (index >= 0 && index < listOfRecipes.size()) {
-            listOfRecipes.remove(index);
+        if (index >= 0 && index < cookBook.size()) {
+            cookBook.remove(index);
         } else {
             System.err.println("Invalid index.");
         }
     }
 
     //***update*** the list of recipes
-    public static void updateRecipe(ArrayList<RecipeStack> listOfRecipes, int index, RecipeStack updatedRecipe) {
+    public static void updateRecipe(ArrayList<Dish> listOfRecipes, int index, Dish updatedRecipe) {
         if (index >= 0 && index < listOfRecipes.size()) {
             listOfRecipes.set(index, updatedRecipe);
             System.out.println("The recipe on index " + index + "has been successfully updated.");
@@ -43,9 +43,9 @@ public class RecipeStackManager {
     }
 
     //get a recipe through the index
-    public RecipeStack getRecipeViaIndex(int index) {
-        if (index >= 0 && index < listOfRecipes.size()) {
-            return listOfRecipes.get(index);
+    public Dish getRecipeViaIndex(int index) {
+        if (index >= 0 && index < cookBook.size()) {
+            return cookBook.get(index);
         } else {
             throw new IllegalArgumentException("Invalid index. Provided index: " + index);
         }
@@ -54,8 +54,8 @@ public class RecipeStackManager {
 
     @Override
     public String toString() {
-        return "RecipeStackManager{" +
-                "listOfRecipes=" + listOfRecipes +
+        return "CookBook{" +
+                "listOfRecipes=" + cookBook +
                 '}';
     }
 }
