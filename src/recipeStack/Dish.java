@@ -6,50 +6,39 @@ import java.net.MalformedURLException;
 import java.net.URL;
 
 public class Dish {
-    private String mealName;
+
+    private int dishID;
+    private String dishName;
     private BigDecimal price;
     private  Duration preparationTime;
     private  String imageUrl;
 
-    public Dish(String mealName, BigDecimal price, Duration preparationTime, String imageUrl) {
-        if(mealName == null) {
-            throw new NullPointerException("The title is not allowed to be a null value");
-        }
-        this.mealName = mealName;
-
-        if(price.compareTo(BigDecimal.ZERO) <= 0) {
-            throw  new IllegalArgumentException("The value must be positive!");
-        }
+    public Dish(int id, String dishName, BigDecimal price, Duration preparationTime, String imageUrl) {
+        this.dishID = id;
+        this.dishName = dishName;
         this.price = price;
-
-        if(preparationTime.isNegative() || preparationTime.isZero()) {
-            throw new IllegalArgumentException("The duration of a recipe cannot be zero or a negative number. Enter a positive value.");
-        }
         this.preparationTime = preparationTime;
-
-        // Check if imageUrl is null or empty, if so, set it to "blank"
-        this.imageUrl = (imageUrl == null || imageUrl.isEmpty()) ? "blank" : imageUrl;
+        this.imageUrl = imageUrl;
     }
 
-
-    public String getMealName() {
-        return mealName;
+    public String getDishName() {
+        return dishName;
     }
 
-    public void setMealName(String mealName) {
-        if(mealName == null) {
-            throw new NullPointerException("The title is not allowed to be a null value");
+    public void setDishName(String dishName) throws DishException {
+        if(dishName == null) {
+            throw new DishException("The title is not allowed to be a null value");
         }
-        this.mealName = mealName;
+        this.dishName = dishName;
     }
 
     public BigDecimal getPrice() {
         return price;
     }
 
-    public void setPrice(BigDecimal price) {
+    public void setPrice(BigDecimal price) throws DishException {
         if(price.compareTo(BigDecimal.ZERO) <= 0) {
-            throw  new IllegalArgumentException("The value must be positive!");
+            throw  new DishException("The value must be positive!");
         }
         this.price = price;
     }
@@ -58,9 +47,9 @@ public class Dish {
         return preparationTime;
     }
 
-    public void setPreparationTime(Duration preparationTime) {
+    public void setPreparationTime(Duration preparationTime) throws DishException {
         if(preparationTime.isNegative() || preparationTime.isZero()) {
-            throw new IllegalArgumentException("The duration of a recipe cannot be zero or a negative number. Enter a positive value.");
+            throw new DishException("The duration of a recipe cannot be zero or a negative number. Enter a positive value.");
         }
         this.preparationTime = preparationTime;
     }
@@ -70,7 +59,7 @@ public class Dish {
     }
 
     public void setImageUrl(String imageUrl) {
-        this.imageUrl = imageUrl;
+        this.imageUrl = (imageUrl == null || imageUrl.isEmpty()) ? "blank" : imageUrl;
     }
 
 
@@ -86,7 +75,8 @@ public class Dish {
     @Override
     public String toString() {
         return "Dish{" +
-                "title='" + mealName + '\'' +
+                "id=" + dishID +
+                ", dishName='" + dishName + '\'' +
                 ", price=" + price +
                 ", preparationTime=" + preparationTime +
                 ", imageUrl='" + imageUrl + '\'' +
