@@ -1,4 +1,4 @@
-package orderTracking;
+package recipeStack;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -8,7 +8,7 @@ public class CookBook {
 
 
     //return new array list (copy)
-    public List<Dish> getPlantsList() {
+    public List<Dish> getDishList() {
         return new ArrayList<>(cookBook);
     }
 
@@ -50,7 +50,6 @@ public class CookBook {
             throw new IllegalArgumentException("Invalid index. Provided index: " + index);
         }
     }
-
 
     @Override
     public String toString() {

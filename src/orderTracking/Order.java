@@ -1,11 +1,13 @@
 package orderTracking;
 
+import recipeStack.Dish;
+
 import java.time.LocalDateTime;
 import java.util.List;
 
 public class Order {
     private Dish mealName;
-    private int table;
+    private Table table;
     private int quantity;
     private LocalDateTime orderedTime;
     private LocalDateTime fulfilmentTime; //the time - order is completed
@@ -13,9 +15,10 @@ public class Order {
     private List<Order> listOfOrders = new java.util.ArrayList<>();
 
 
-    public Order(Dish mealName, int quantity) {
-        this.mealName = mealName;
+    public Order(Dish dishName, int quantity, Table table,LocalDateTime fulfilmentTime) {
+        this.mealName = dishName;
         this.quantity = quantity;
+        this.table = table;
         this.orderedTime = LocalDateTime.now();
         this.fulfilmentTime = null; // The order has not yet been processed
         this.paid = false; // Order not yet paid
