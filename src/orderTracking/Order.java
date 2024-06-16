@@ -22,7 +22,7 @@ public class Order implements Comparable<Order> {
         this.orderId = generateNewOrderId();
         this.dishID = dishID;
         this.quantity = quantity;
-        if (tableNumber <= 0 || tableNumber > 10) {
+        if (tableNumber <= 0 || tableNumber > 20) {
             throw new OrderException("Available tables in the restaurant are 1,2,3,4,5,6,7,8,9,10. The table cannot be 0 or greater than 10. Provided table number: " + tableNumber);
         }
         this.tableNumber = tableNumber;
@@ -58,7 +58,7 @@ public class Order implements Comparable<Order> {
 
 
     public void setTableNumber(int tableNumber) throws OrderException {
-        if (tableNumber <= 0 || tableNumber > 10) {
+        if (tableNumber <= 0 || tableNumber > 20) {
             throw new OrderException("Available tables in the restaurant are 1,2,3,4,5,6,7,8,9,10. The table cannot be 0 or greater than 10. Provided table number: " + tableNumber);
         }
         this.tableNumber = tableNumber;
