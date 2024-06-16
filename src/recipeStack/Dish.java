@@ -6,7 +6,6 @@ import java.net.MalformedURLException;
 import java.net.URL;
 
 public class Dish {
-
     private int dishID;
     private String dishName;
     private BigDecimal price;

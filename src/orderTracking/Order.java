@@ -32,7 +32,6 @@ public class Order implements Comparable<Order> {
     }
 
 
-    //Static method for generating a new ID
     private static synchronized int generateNewOrderId() {
         return ++lastOrderId;
     }
@@ -56,7 +55,6 @@ public class Order implements Comparable<Order> {
         return quantity;
     }
 
-
     public void setTableNumber(int tableNumber) throws OrderException {
         if (tableNumber <= 0 || tableNumber > 20) {
             throw new OrderException("Available tables in the restaurant are 1,2,3,4,5,6,7,8,9,10. The table cannot be 0 or greater than 10. Provided table number: " + tableNumber);
@@ -67,7 +65,6 @@ public class Order implements Comparable<Order> {
     public int getTableNumber() {
         return tableNumber;
     }
-
 
     @Override
     public int compareTo(Order o) {
