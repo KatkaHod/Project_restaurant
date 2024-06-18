@@ -3,7 +3,6 @@ package orderTracking;
 import recipeStack.Dish;
 
 import java.time.LocalDateTime;
-import java.util.List;
 
 public class Order implements Comparable<Order> {
 
@@ -15,7 +14,6 @@ public class Order implements Comparable<Order> {
     private LocalDateTime orderedTime;
     private LocalDateTime fulfilmentTime;
     private boolean paid;
-    private List<Order> listOfOrders = new java.util.ArrayList<>();
 
 
     public Order(Dish dishID, int quantity, int tableNumber ) throws OrderException {
@@ -80,7 +78,6 @@ public class Order implements Comparable<Order> {
                 ", orderedTime=" + orderedTime +
                 ", fulfilmentTime=" + fulfilmentTime +
                 ", paid=" + paid +
-                ", listOfOrders=" + listOfOrders +
                 '}';
     }
 
