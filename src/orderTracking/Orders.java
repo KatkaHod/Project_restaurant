@@ -3,7 +3,7 @@ package orderTracking;
 import java.util.ArrayList;
 import java.util.List;
 
-public class OrdersManager {
+public class Orders {
     private List<Order> listOrders = new java.util.ArrayList<>();
 
 
@@ -27,7 +27,7 @@ public class OrdersManager {
 
     @Override
     public String toString() {
-        return "OrdersManager{" +
+        return "Orders{" +
                 "listOrders=" + listOrders +
                 '}';
     }
