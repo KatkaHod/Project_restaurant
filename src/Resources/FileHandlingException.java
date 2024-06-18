@@ -1,4 +1,4 @@
-package FileHandling;
+package Resources;
 
 public class FileHandlingException extends Exception {
     public FileHandlingException(String message) {
