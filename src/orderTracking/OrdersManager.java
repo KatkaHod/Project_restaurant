@@ -1,11 +1,9 @@
-package recipeStack;
-
-import orderTracking.Order;
+package orderTracking;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class CookBookManager {
+public class OrdersManager {
     private List<Order> listOrders = new java.util.ArrayList<>();
 
 
@@ -29,7 +27,7 @@ public class CookBookManager {
 
     @Override
     public String toString() {
-        return "CookBookManager{" +
+        return "OrdersManager{" +
                 "listOrders=" + listOrders +
                 '}';
     }

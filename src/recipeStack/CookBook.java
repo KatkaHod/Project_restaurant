@@ -7,43 +7,42 @@ public class CookBook {
     private List <Dish> cookBook = new java.util.ArrayList<>();
 
 
-    //return new array list (copy)
-    public List<Dish> getDishList() {
+
+    public List<Dish> getCookBook() {
         return new ArrayList<>(cookBook);
     }
 
-    //add a recipe to the Arraylist
-    public void addRecipe(Dish newRecipe) {
+    public void addDishToCookBook(Dish newRecipe) {
         cookBook.add(newRecipe);
     }
 
-    //***Add*** multiple recipes at once
-    public void addRecipes(List<Dish> newRecipes){
+
+    //***Add*** multiple dishes at once
+    public void addDishesToCookBook(List<Dish> newRecipes){
         this.cookBook.addAll(newRecipes);
     }
 
 
-    //***remove*** recipe from the arrayList
-    public void removeRecipe(int index) {
+    //***remove*** dish from the arrayList
+    public void removeDishFromCookBook(int index) {
         if (index >= 0 && index < cookBook.size()) {
             cookBook.remove(index);
         } else {
-            System.err.println("Invalid index.");
+            System.err.println("Invalid index." + index);
         }
     }
 
-    //***update*** the list of recipes
-    public static void updateRecipe(ArrayList<Dish> listOfRecipes, int index, Dish updatedRecipe) {
-        if (index >= 0 && index < listOfRecipes.size()) {
-            listOfRecipes.set(index, updatedRecipe);
+    //***update*** the cookBook
+    public static void updateCookBook(ArrayList<Dish> cookBook, int index, Dish updatedCookBook) {
+        if (index >= 0 && index < cookBook.size()) {
+            cookBook.set(index, updatedCookBook);
             System.out.println("The recipe on index " + index + "has been successfully updated.");
         } else {
-            System.out.println("Invalid index.");
+            System.out.println("Invalid index." + index);
         }
     }
 
-    //get a recipe through the index
-    public Dish getRecipeViaIndex(int index) {
+    public Dish getDishViaIndex(int index) {
         if (index >= 0 && index < cookBook.size()) {
             return cookBook.get(index);
         } else {
@@ -54,7 +53,7 @@ public class CookBook {
     @Override
     public String toString() {
         return "CookBook{" +
-                "listOfRecipes=" + cookBook +
+                "cookBook=" + cookBook +
                 '}';
     }
 }
