@@ -29,6 +29,29 @@ public class Order implements Comparable<Order> {
         this.paid = false; // Order not yet paid
     }
 
+    public static int getLastOrderId() {
+        return lastOrderId;
+    }
+
+    public int getOrderId() {
+        return orderId;
+    }
+
+    public Dish getDishID() {
+        return dishID;
+    }
+
+    public LocalDateTime getOrderedTime() {
+        return orderedTime;
+    }
+
+    public LocalDateTime getFulfilmentTime() {
+        return fulfilmentTime;
+    }
+
+    public boolean isPaid() {
+        return paid;
+    }
 
     private static synchronized int generateNewOrderId() {
         return ++lastOrderId;

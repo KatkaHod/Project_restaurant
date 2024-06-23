@@ -1,3 +1,4 @@
+
 package recipeStack;
 
 import java.math.BigDecimal;
@@ -6,29 +7,29 @@ import java.net.MalformedURLException;
 import java.net.URL;
 
 public class Dish {
-    private int dishID;
-    private String dishName;
+    private String title;
     private BigDecimal price;
     private  Duration preparationTime;
-    private  String imageUrl;
+    private  String image;
 
-    public Dish(int id, String dishName, BigDecimal price, Duration preparationTime, String imageUrl) {
-        this.dishID = id;
-        this.dishName = dishName;
-        this.price = price;
-        this.preparationTime = preparationTime;
-        this.imageUrl = imageUrl;
+
+    public Dish(String title, BigDecimal price, Duration preparationTime, String image) throws DishException {
+        setTitle(title);
+        setPrice(price);
+        setPreparationTime(preparationTime);
+        setImageUrl(image);
     }
 
-    public String getDishName() {
-        return dishName;
+
+    public String getTitle() {
+        return title;
     }
 
-    public void setDishName(String dishName) throws DishException {
-        if(dishName == null) {
+    public void setTitle(String title) throws DishException {
+        if(title == null) {
             throw new DishException("The title is not allowed to be a null value");
         }
-        this.dishName = dishName;
+        this.title = title;
     }
 
     public BigDecimal getPrice() {
@@ -54,11 +55,11 @@ public class Dish {
     }
 
     public String getImageUrl() {
-        return imageUrl;
+        return image;
     }
 
     public void setImageUrl(String imageUrl) {
-        this.imageUrl = (imageUrl == null || imageUrl.isEmpty()) ? "blank" : imageUrl;
+        this.image = (imageUrl == null || imageUrl.isEmpty()) ? "blank" : imageUrl;
     }
 
 
@@ -73,12 +74,11 @@ public class Dish {
 
     @Override
     public String toString() {
-        return "Dish{" +
-                "id=" + dishID +
-                ", dishName='" + dishName + '\'' +
-                ", price=" + price +
-                ", preparationTime=" + preparationTime +
-                ", imageUrl='" + imageUrl + '\'' +
-                '}';
+        return "Title: " + title + ","
+                + "price:" + price + "CZK" + ", "
+                + "preparation time: " + preparationTime + "minutes" + ", "
+                + "image: " + image;
     }
+
+
 }
