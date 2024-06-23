@@ -1,59 +1,168 @@
 package recipeStack;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.HashMap;
+import java.util.Map;
+import java.math.BigDecimal;
+
 
 public class CookBook {
-    private List <Dish> cookBook = new java.util.ArrayList<>();
+    private Map<Integer, Dish> dishes = new HashMap<>();
+    private int nextId = 1;
 
 
-
-    public List<Dish> getCookBook() {
-        return new ArrayList<>(cookBook);
-    }
-
-    public void addDishToCookBook(Dish newRecipe) {
-        cookBook.add(newRecipe);
-    }
-
-
-    //***Add*** multiple dishes at once
-    public void addDishesToCookBook(List<Dish> newRecipes){
-        this.cookBook.addAll(newRecipes);
-    }
-
-
-    //***remove*** dish from the arrayList
-    public void removeDishFromCookBook(int index) {
-        if (index >= 0 && index < cookBook.size()) {
-            cookBook.remove(index);
-        } else {
-            System.err.println("Invalid index." + index);
+    public void addDish(Dish dish) throws CookBookExceptions {
+        try {
+            dishes.put(nextId, dish);
+            nextId++;
+        } catch (Exception e) {
+            throw new CookBookExceptions("an error when adding a Dish:\n" + e.getLocalizedMessage());
         }
     }
 
-    //***update*** the cookBook
-    public static void updateCookBook(ArrayList<Dish> cookBook, int index, Dish updatedCookBook) {
-        if (index >= 0 && index < cookBook.size()) {
-            cookBook.set(index, updatedCookBook);
-            System.out.println("The recipe on index " + index + "has been successfully updated.");
+    public Dish getDish(int id) throws CookBookExceptions {
+        Dish dish = dishes.get(id);
+        if (dish == null) {
+            throw new CookBookExceptions("Dish with ID: " + id + " not found.");
+        }
+        return dish;
+    }
+
+    public void updateDish(int id, Dish dish) throws CookBookExceptions {
+        if (dishes.containsKey(id)) {
+            try {
+                dishes.put(id, dish);
+            } catch (Exception e) {
+                throw new CookBookExceptions("Error when updating DISH with id: " + id  + e.getLocalizedMessage());
+            }
         } else {
-            System.out.println("Invalid index." + index);
+            throw new CookBookExceptions("Dish with id not found: " + id);
         }
     }
 
-    public Dish getDishViaIndex(int index) {
-        if (index >= 0 && index < cookBook.size()) {
-            return cookBook.get(index);
+    public void removeDish(int id) throws CookBookExceptions {
+        if (dishes.containsKey(id)) {
+            dishes.remove(id);
         } else {
-            throw new IllegalArgumentException("Invalid index. Provided index: " + index);
+            throw new CookBookExceptions("Dish with id not found: " + id);
         }
     }
 
-    @Override
-    public String toString() {
-        return "CookBook{" +
-                "cookBook=" + cookBook +
-                '}';
+
+    public void updateDishTitle(int id, String title) throws CookBookExceptions {
+        if (dishes.containsKey(id)) {
+            try {
+                dishes.get(id).setTitle(title);
+            } catch (Exception e) {
+                throw new CookBookExceptions("Error when updating the dish title including id: " + id + e.getLocalizedMessage());
+            }
+        } else {
+            throw new CookBookExceptions("Dish with id not found: " + id);
+        }
     }
+
+    public void updateDishPrice(int id, BigDecimal price) throws CookBookExceptions {
+        if (dishes.containsKey(id)) {
+            try {
+                dishes.get(id).setPrice(price);
+            } catch (Exception e) {
+                throw new CookBookExceptions("Error when updating the dish price with id: " + e.getLocalizedMessage());
+            }
+        } else {
+            throw new CookBookExceptions("Dish with id not found: " + id);
+        }
+    }
+
+    public void updateDishPreparationTime(int id, int preparationTime) throws CookBookExceptions {
+        if (dishes.containsKey(id)) {
+            try {
+                dishes.get(id).setPreparationTime(preparationTime);
+            } catch (Exception e) {
+                throw new CookBookExceptions("Error when updating the preparation time with ID: " + id + e.getLocalizedMessage());
+            }
+        } else {
+            throw new CookBookExceptions("Dish with id not found: " + id);
+        }
+    }
+
+    public void updateDishImage(int id, String image) throws CookBookExceptions {
+        if (dishes.containsKey(id)) {
+            try {
+                dishes.get(id).setImage(image);
+            } catch (Exception e) {
+                throw new CookBookExceptions("Error when updating the image with ID: " + id + e.getLocalizedMessage());
+            }
+        } else {
+            throw new CookBookExceptions("Dish with id not found: " + id);
+        }
+    }
+
+    public Map<Integer, Dish> getDishes() {
+        return new HashMap<>(dishes);
+    }
+
+    public int getDishesSize() {
+        return dishes.size();
+    }
+
+    public void removeDishes() {
+        dishes.clear();
+        nextId = 1;
+    }
+
+    public Dish getDishById(int id) throws CookBookExceptions {
+        if (!dishes.containsKey(id)) {
+            throw new CookBookExceptions("Dish with id not found: " + id);
+        }
+        return dishes.get(id);
+    }
+
+    public int getDishId(Dish dish) throws CookBookExceptions{
+        try {
+            for (Map.Entry<Integer, Dish> entry : dishes.entrySet()) {
+                if (entry.getValue().equals(dish)) {
+                    return entry.getKey();
+                }
+            }
+            throw new CookBookExceptions("Dish not found");
+        } catch (Exception e) {
+            throw new CookBookExceptions("Error when searching for a dish: " + e.getLocalizedMessage());
+        }
+    }
+
+    public Boolean containsDish(Dish dish) {
+        return dishes.containsValue(dish);
+    }
+
+    public String getDishInfo(int id) throws CookBookExceptions {
+        Dish dish = dishes.get(id);
+        if (dish == null) {
+            throw new CookBookExceptions(" The Dish with id: " + id + "not found");
+        }
+        return "Dish information: "
+                + id + dish.getTitle() + ", price: " + dish.getPrice() + ", preparation time: " + dish.getPreparationTime() + " minutes, image: " + dish.getImage();
+    }
+
+    public String getDishesInfo() {
+        StringBuilder stringBuilder = new StringBuilder();
+        if (dishes.isEmpty()) {
+            return "The CookBook list is empty";
+        } else {
+            for (Map.Entry<Integer, Dish> entry : dishes.entrySet()) {
+                stringBuilder.append("Dish + ID: ").append(entry.getKey()).append(": ").append(entry.getValue().getTitle()).append(", price: ")
+                        .append(entry.getValue().getPrice()).append(" CZK, preparation time: ").append(entry.getValue().getPreparationTime())
+                        .append(" minutes, image: ").append(entry.getValue().getImage()).append("\n");
+            } return stringBuilder.toString();
+        }
+
+
+
+
+
+
+
+
+
+    }
+
+
 }

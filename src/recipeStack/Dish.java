@@ -9,15 +9,15 @@ import java.net.URL;
 public class Dish {
     private String title;
     private BigDecimal price;
-    private  Duration preparationTime;
+    private  int preparationTime;
     private  String image;
 
 
-    public Dish(String title, BigDecimal price, Duration preparationTime, String image) throws DishException {
+    public Dish(String title, BigDecimal price, int preparationTime, String image) throws DishException {
         setTitle(title);
         setPrice(price);
         setPreparationTime(preparationTime);
-        setImageUrl(image);
+        setImage(image);
     }
 
 
@@ -43,22 +43,22 @@ public class Dish {
         this.price = price;
     }
 
-    public Duration getPreparationTime() {
+    public int getPreparationTime() {
         return preparationTime;
     }
 
-    public void setPreparationTime(Duration preparationTime) throws DishException {
-        if(preparationTime.isNegative() || preparationTime.isZero()) {
+    public void setPreparationTime(int preparationTime) throws DishException {
+        if(preparationTime <=0) {
             throw new DishException("The duration of a recipe cannot be zero or a negative number. Enter a positive value.");
         }
         this.preparationTime = preparationTime;
     }
 
-    public String getImageUrl() {
+    public String getImage() {
         return image;
     }
 
-    public void setImageUrl(String imageUrl) {
+    public void setImage(String imageUrl) {
         this.image = (imageUrl == null || imageUrl.isEmpty()) ? "blank" : imageUrl;
     }
 
