@@ -6,6 +6,8 @@ import java.math.BigDecimal;
 
 
 public class CookBook {
+
+    //A map to store dishes with their IDs and a variable to keep track of the next available ID.
     private Map<Integer, Dish> dishes = new HashMap<>();
     private int nextId = 1;
 
