@@ -24,18 +24,18 @@ public class Order implements Comparable<Order> {
     private boolean paid;
 
 
-    public Order(Dish dishID, int quantity, int tableNumber ) throws OrderException {
-        this.dish = dish;
-        this.quantity = quantity;
-        if (tableNumber <= 0 || tableNumber > 20) {
-            throw new OrderException("Available tables in the restaurant are 1,2,3,4,5,6,7,8,9,10. The table cannot be 0 or greater than 10. Provided table number: " + tableNumber);
-        }
-        this.tableNumber = tableNumber;
-        this.orderedTime = LocalDateTime.now();
-        this.fulfilmentTime = null; // The order has not yet been processed
-        this.paid = false; // orderTracking.Order not yet paid
-    }
 
+    public Order(Dish dish, int quantity, LocalDateTime orderedTime, LocalDateTime fulfilmentTime, int tableNumber, boolean paid) throws OrderException{
+        this.dish = dish;
+        setQuantity(quantity);
+        setOrderedTime(orderedTime);
+        this.fulfilmentTime = fulfilmentTime;
+        setTableNumber(tableNumber);
+        this.paid = paid;
+    }
+    public Order(Dish dish, int quantity, LocalDateTime orderedTime, int tableNumber) throws OrderException {
+        this(dish, quantity, orderedTime, null, tableNumber, false);
+    }
 
 
     // **** Get and Set methods ****
