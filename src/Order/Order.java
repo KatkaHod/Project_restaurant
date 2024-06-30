@@ -33,8 +33,8 @@ public class Order implements Comparable<Order> {
         setTableNumber(tableNumber);
         this.paid = paid;
     }
-    public Order(Dish dish, int quantity, LocalDateTime orderedTime, int tableNumber) throws OrderException {
-        this(dish, quantity, orderedTime, null, tableNumber, false);
+    public Order(Dish dish, int quantity, int tableNumber) throws OrderException {
+        this(dish, quantity, LocalDateTime.now(), null, tableNumber, false);
     }
 
 

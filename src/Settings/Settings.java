@@ -29,6 +29,9 @@ public class Settings {
         return FILE_NAME_SUMMARY;
     }
 
+    public static String getDelimiter() {
+        return DELIMITER;
+    }
 
     public static String getDateFormat() {
         return DATE_FORMAT;
