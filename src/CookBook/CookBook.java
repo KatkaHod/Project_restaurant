@@ -1,4 +1,4 @@
-package recipeStack;
+package CookBook;
 
 import java.util.HashMap;
 import java.util.Map;

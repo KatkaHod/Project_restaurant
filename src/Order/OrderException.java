@@ -1,4 +1,4 @@
-package orderTracking;
+package Order;
 
 public class OrderException extends Exception {
     public OrderException(String message) {

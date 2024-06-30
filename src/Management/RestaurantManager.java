@@ -1,4 +1,4 @@
-package reportToManagement;
+package Management;
 
 public class RestaurantManager {
 }

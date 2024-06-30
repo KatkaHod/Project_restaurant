@@ -1,4 +1,4 @@
-package recipeStack;
+package CookBook;
 import java.lang.Exception;
 
 public class CookBookExceptions extends Exception {

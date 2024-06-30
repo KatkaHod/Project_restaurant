@@ -1,4 +1,4 @@
-package orderTracking;
+package Order;
 
 public class OrderSettings {
 

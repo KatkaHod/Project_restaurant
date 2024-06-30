@@ -1,4 +1,4 @@
-package recipeStack;
+package CookBook;
 
 public class CookBookSettings {
     private static final String inputCookBook = "resources/CookBook.txt";

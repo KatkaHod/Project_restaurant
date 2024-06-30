@@ -1,4 +1,4 @@
-package orderTracking;
+package Order;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -36,7 +36,7 @@ public class Orders {
                 lineNumber++;
                 line = scanner.nextLine();
                 String[] parts = line.split(delimiter);
-                //Order order = parseOrder(parts, lineNumber, line);
+                //orderTracking.Order order = parseOrder(parts, lineNumber, line);
                 //addOrder(order);
             }
         } catch (IOException e) {

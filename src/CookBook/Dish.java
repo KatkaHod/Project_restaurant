@@ -1,8 +1,7 @@
 
-package recipeStack;
+package CookBook;
 
 import java.math.BigDecimal;
-import java.time.Duration;
 import java.net.MalformedURLException;
 import java.net.URL;
 

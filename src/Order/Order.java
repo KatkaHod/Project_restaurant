@@ -1,6 +1,6 @@
-package orderTracking;
+package Order;
 
-import recipeStack.Dish;
+import CookBook.Dish;
 
 import java.time.LocalDateTime;
 
@@ -26,7 +26,7 @@ public class Order implements Comparable<Order> {
         this.tableNumber = tableNumber;
         this.orderedTime = LocalDateTime.now();
         this.fulfilmentTime = null; // The order has not yet been processed
-        this.paid = false; // Order not yet paid
+        this.paid = false; // orderTracking.Order not yet paid
     }
 
     public static int getLastOrderId() {
@@ -94,7 +94,7 @@ public class Order implements Comparable<Order> {
 
     @Override
     public String toString() {
-        return "Order{" +
+        return "orderTracking.Order{" +
                 "mName=" + dishID +
                 ", table=" + tableNumber +
                 ", quantity=" + quantity +
