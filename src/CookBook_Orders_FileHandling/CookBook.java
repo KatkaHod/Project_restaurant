@@ -1,4 +1,4 @@
-package CookBook;
+package CookBook_Orders_FileHandling;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -155,12 +155,6 @@ public class CookBook {
                         .append(" minutes, image: ").append(entry.getValue().getImage()).append("\n");
             } return stringBuilder.toString();
         }
-
-
-
-
-
-
 
 
 

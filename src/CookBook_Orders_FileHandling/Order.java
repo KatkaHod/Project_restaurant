@@ -1,6 +1,5 @@
-package Order;
+package CookBook_Orders_FileHandling;
 
-import CookBook.Dish;
 import Settings.Settings;
 
 import java.math.BigDecimal;
@@ -25,7 +24,7 @@ public class Order implements Comparable<Order> {
 
 
 
-    public Order(Dish dish, int quantity, LocalDateTime orderedTime, LocalDateTime fulfilmentTime, int tableNumber, boolean paid) throws OrderException{
+    public Order(Dish dish, int quantity, LocalDateTime orderedTime, LocalDateTime fulfilmentTime, int tableNumber, boolean paid) throws OrderException {
         this.dish = dish;
         setQuantity(quantity);
         setOrderedTime(orderedTime);
@@ -39,6 +38,10 @@ public class Order implements Comparable<Order> {
 
 
     // **** Get and Set methods ****
+
+    public Dish getDish() {
+        return dish;
+    }
 
     public void setQuantity(int quantity) throws OrderException {
         if(quantity <= 0) {
