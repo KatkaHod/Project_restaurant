@@ -5,20 +5,24 @@ import java.util.List;
 import java.util.Scanner;
 
 import static Settings.Settings.getDelimiter;
-import CookBook_Orders_FileHandling.CookBook;
 
 public class FileOperations {
 
-    public void saveOrdersToFile(List<Order> orders, String fileName) throws FileExceptions {
+
+    public void saveOrdersToFile(List<Order> orders,CookBook cookBook, String fileName) throws FileExceptions {
         System.out.println("Saving orders to file: " + fileName);
 
         if (orders.isEmpty()) {
             throw new FileExceptions("The list of orders is empty.");
         }
+        if (cookBook == null) {
+            throw new FileExceptions("CookBook is null value - empty.");
+        }
+
         int lineCounter = 0;
         try (PrintWriter writer = new PrintWriter(new BufferedWriter(new FileWriter(fileName)))) {
             for (Order order : orders) {
-                if (cookBook.containsDish(order.getDish())) {
+                if (cookBook.containsDish(order.getDish()))   {
                     writer.println(
                             order.getTableNumber() + getDelimiter() +
                                     cookBook.getDishId(order.getDish()) + getDelimiter() +
@@ -32,13 +36,15 @@ public class FileOperations {
                 }
             }
         } catch (FileNotFoundException e) {
-            throw new FileExceptions("File " + fileName + " not found!\n" + e.getLocalizedMessage());
+            throw new FileExceptions("File " + fileName + " not found!" + e.getLocalizedMessage());
         } catch (IOException e) {
             throw new FileExceptions("An error occurred when writing to a file. " + fileName + "!\n" + e.getLocalizedMessage());
         } finally {
             System.out.println("Count of rows: " + lineCounter);
         }
     }
+
+
 
 
     public void loadOrdersFromFile(String inputFilename, String delimiter) throws OrderException {

@@ -118,16 +118,16 @@ public class CookBook {
         return dishes.get(id);
     }
 
-    public int getDishId(Dish dish) throws CookBookExceptions{
+    public int getDishId(Dish dish) throws FileExceptions{
         try {
             for (Map.Entry<Integer, Dish> entry : dishes.entrySet()) {
                 if (entry.getValue().equals(dish)) {
                     return entry.getKey();
                 }
             }
-            throw new CookBookExceptions("Dish not found");
+            throw new FileExceptions("Dish not found");
         } catch (Exception e) {
-            throw new CookBookExceptions("Error when searching for a dish: " + e.getLocalizedMessage());
+            throw new FileExceptions("Error when searching for a dish: " + e.getLocalizedMessage());
         }
     }
 
