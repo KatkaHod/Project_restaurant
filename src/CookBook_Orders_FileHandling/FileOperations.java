@@ -1,6 +1,7 @@
 package CookBook_Orders_FileHandling;
 
 import java.io.*;
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Scanner;
 
@@ -45,23 +46,62 @@ public class FileOperations {
     }
 
 
+    public void loadOrdersFromFile(List<Order> orders,CookBook cookBook,String fileName) throws OrderException {
+        System.out.println("loading the orders from the file: " + fileName);
+        orders.clear();
+        int lineCounter = 0;
 
-
-    public void loadOrdersFromFile(String inputFilename, String delimiter) throws OrderException {
-        try (Scanner scanner = new Scanner(new BufferedReader(new FileReader(inputFilename)))) {
+        try (Scanner scanner = new Scanner(new BufferedReader(new FileReader(fileName)))) {
             String line;
-            int lineNumber = 0;
+
             while (scanner.hasNextLine()) {
-                lineNumber++;
+
                 line = scanner.nextLine();
-                String[] parts = line.split(delimiter);
-                //orderTracking.Order order = parseOrder(parts, lineNumber, line);
-                //addOrder(order);
+                String[] parts = line.split(getDelimiter());
+
+                if (parts.length != 6) throw new OrderException("Wrong format in the line of the file from which I read the orders: " + (lineCounter + 1));
+
+                int tableNumber = Integer.parseInt(parts[0]);
+                int dishId = Integer.parseInt(parts[1]);
+                int quantity = Integer.parseInt(parts[2]);
+                LocalDateTime orderedTime = LocalDateTime.parse(parts[3]);
+                LocalDateTime fulfilmentTime;
+
+                fulfilmentTime = "null".equals(parts[4]) ? null : LocalDateTime.parse(parts[4]);
+
+                if (fulfilmentTime != null && fulfilmentTime.isBefore(orderedTime)) {
+                    throw new OrderException("The time of fulfilment must not be earlier than the order date.");
+                }
+
+                boolean isPaid;
+
+                switch (parts[5]) {
+                    case "paid" -> isPaid = true;
+                    case "not paid" -> isPaid = false;
+                    default -> throw new OrderException(String.format("Error format on line %d in file %s!", lineCounter + 1, fileName));
+                }
+
+                if (cookBook.getDishes().containsKey(dishId)) {
+                    orders.add(new Order(
+                            cookBook.getDishById(dishId),
+                            quantity,
+                            orderedTime,
+                            fulfilmentTime != null ? fulfilmentTime : null,
+                            tableNumber,
+                            isPaid
+                    ));
+
+                    lineCounter++;
+
+                } else {
+                    throw new OrderException("The order contains non exist dish");
+                }
+
             }
         } catch (IOException e) {
-            throw new OrderException("Error during file read process: " + e.getMessage());
+            throw new OrderException(String.format("Error during file read process: %s", e.getMessage()));
         } catch (IllegalArgumentException e) {
-            throw new OrderException("Unknown category: " + e.getMessage());
+            throw new OrderException(String.format("Unknown category: %s", e.getMessage()));
         }
     }
 

@@ -111,9 +111,9 @@ public class CookBook {
         nextId = 1;
     }
 
-    public Dish getDishById(int id) throws CookBookExceptions {
+    public Dish getDishById(int id) throws OrderException {
         if (!dishes.containsKey(id)) {
-            throw new CookBookExceptions("Dish with id not found: " + id);
+            throw new OrderException("Dish with id not found: " + id);
         }
         return dishes.get(id);
     }
