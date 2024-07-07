@@ -1,7 +1,7 @@
-package com.restaurant.Tracking;
+package Tracking;
 
-import com.restaurantExceptions.FileException;
-import com.restaurantExceptions.OrderException;
+import restaurantExceptions.FileException;
+import restaurantExceptions.OrderException;
 
 import java.io.*;
 import java.math.BigDecimal;
@@ -10,7 +10,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Scanner;
 
-import static com.Settings.Settings.getDelimiter;
+import static Tracking.Settings.getDelimiter;
 
 public class FileOperations {
 

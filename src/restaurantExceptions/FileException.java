@@ -1,4 +1,4 @@
-package com.restaurantExceptions;
+package restaurantExceptions;
 
 public class FileException extends Exception {
     public FileException(String message) {

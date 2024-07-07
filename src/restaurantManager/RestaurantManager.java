@@ -1,6 +1,6 @@
-package com.restaurantManager;
+package restaurantManager;
 
-import com.restaurant.Tracking.Order;
+import Tracking.Order;
 
 import java.time.Duration;
 import java.util.List;

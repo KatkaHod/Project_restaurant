@@ -1,7 +1,7 @@
 
-package com.restaurant.Tracking;
+package Tracking;
 
-import com.restaurantExceptions.DishException;
+import restaurantExceptions.DishException;
 
 import java.math.BigDecimal;
 import java.net.MalformedURLException;

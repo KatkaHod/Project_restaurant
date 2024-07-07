@@ -1,4 +1,4 @@
-package com.restaurantExceptions;
+package restaurantExceptions;
 import java.lang.Exception;
 
 public class DishException extends Exception{

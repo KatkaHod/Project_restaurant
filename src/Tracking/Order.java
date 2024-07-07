@@ -1,7 +1,6 @@
-package com.restaurant.Tracking;
+package Tracking;
 
-import com.Settings.Settings;
-import com.restaurantExceptions.OrderException;
+import restaurantExceptions.OrderException;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;

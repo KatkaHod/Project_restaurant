@@ -1,4 +1,4 @@
-package com.restaurantExceptions;
+package restaurantExceptions;
 
 public class OrderException extends Exception {
     public OrderException(String message) {
