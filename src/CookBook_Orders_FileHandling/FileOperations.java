@@ -1,17 +1,20 @@
 package CookBook_Orders_FileHandling;
 
 import java.io.*;
+import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.Map;
 import java.util.Scanner;
 
 import static Settings.Settings.getDelimiter;
 
 public class FileOperations {
 
+    // ***** Orders *****
 
     public void saveOrdersToFile(List<Order> orders,CookBook cookBook, String fileName) throws FileExceptions {
-        System.out.println("Saving orders to file: " + fileName);
+        System.out.println("Saving orders to file: " + fileName + " ... ");
 
         if (orders.isEmpty()) {
             throw new FileExceptions("The list of orders is empty.");
@@ -47,7 +50,7 @@ public class FileOperations {
 
 
     public void loadOrdersFromFile(List<Order> orders,CookBook cookBook,String fileName) throws OrderException {
-        System.out.println("loading the orders from the file: " + fileName);
+        System.out.println("loading the orders from the file: " + fileName + "...");
         orders.clear();
         int lineCounter = 0;
 
@@ -104,6 +107,69 @@ public class FileOperations {
             throw new OrderException(String.format("Unknown category: %s", e.getMessage()));
         }
     }
+
+
+    // ***** CookBook *****
+
+    public void saveCookBookToFile(CookBook cookBook, String fileName) throws FileExceptions {
+        System.out.println("Saving the cookbook to a file " + fileName + "...");
+        int lineCounter = 0;
+
+        try (PrintWriter writer = new PrintWriter(new BufferedWriter(new FileWriter(fileName)))) {
+            for (Map.Entry<Integer, Dish> entry : cookBook.getDishes().entrySet()) {
+                Dish dish = entry.getValue();
+                writer.println(entry.getKey() + getDelimiter() +
+                        dish.getTitle() + getDelimiter() +
+                        dish.getPrice() + getDelimiter() +
+                        dish.getPreparationTime() + getDelimiter() +
+                        dish.getImage());
+                lineCounter++;
+            }
+        } catch (FileNotFoundException e) {
+            throw new FileExceptions("The file " + fileName + " not found: " + e.getLocalizedMessage());
+        } catch (IOException e) {
+            throw new FileExceptions("An error occurred when writing to a file: " + fileName + e.getLocalizedMessage());
+        } finally {
+            System.out.println("Count of rows: " + lineCounter);
+        }
+    }
+
+
+    public void loadCookBookFromFile(CookBook cookBook, String fileName) throws FileExceptions {
+        System.out.println("Loading the CookBook from the file " + fileName + "...");
+        int lineCounter = 0;
+
+        try (BufferedReader reader = new BufferedReader(new FileReader(fileName))) {
+            String line;
+            while ((line = reader.readLine()) != null) {
+                String[] parts = line.split(getDelimiter());
+
+                if (parts.length != 5)
+                    throw new FileExceptions("Incorrect format on line " + (lineCounter + 1) + " in file " + fileName);
+
+                int id = Integer.parseInt(parts[0]);
+                String title = parts[1];
+                BigDecimal price = new BigDecimal(parts[2]);
+                int preparationTime = Integer.parseInt(parts[3]);
+                String image = parts[4];
+
+                cookBook.addDish(new Dish(title, price, preparationTime, image));
+                lineCounter++;
+            }
+        } catch (FileNotFoundException e) {
+            throw new FileExceptions(String.format("File not found: %s. %s", fileName, e.getLocalizedMessage()));
+        } catch (NumberFormatException e) {
+            throw new FileExceptions(String.format("Incorrect number format on line %d: %s", lineCounter, e.getLocalizedMessage()));
+        } catch (Exception e) {
+            throw new FileExceptions(String.format("An error occurred when loading a menu from file %s (line %d): %s", fileName, lineCounter, e.getLocalizedMessage()));
+        } finally {
+            System.out.printf("Count of rows: %d%n", lineCounter);
+        }
+    }
+
+
+
+
 
 
 
