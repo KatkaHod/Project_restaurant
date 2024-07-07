@@ -1,4 +1,4 @@
-package Settings;
+package com.Settings;
 
 public class Settings {
     private static final String DEFAULT_IMAGE = "blank";

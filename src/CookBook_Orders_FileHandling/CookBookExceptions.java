@@ -1,9 +1,0 @@
-package CookBook_Orders_FileHandling;
-import java.lang.Exception;
-
-public class CookBookExceptions extends Exception {
-    public CookBookExceptions(String message) {
-        super(message);
-    }
-
-}

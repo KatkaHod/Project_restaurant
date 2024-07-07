@@ -1,4 +1,7 @@
-package CookBook_Orders_FileHandling;
+package com.restaurant.Tracking;
+
+import com.restaurantExceptions.FileException;
+import com.restaurantExceptions.OrderException;
 
 import java.io.*;
 import java.math.BigDecimal;
@@ -7,20 +10,20 @@ import java.util.List;
 import java.util.Map;
 import java.util.Scanner;
 
-import static Settings.Settings.getDelimiter;
+import static com.Settings.Settings.getDelimiter;
 
 public class FileOperations {
 
     // ***** Orders *****
 
-    public void saveOrdersToFile(List<Order> orders,CookBook cookBook, String fileName) throws FileExceptions {
+    public void saveOrdersToFile(List<Order> orders,CookBook cookBook, String fileName) throws FileException {
         System.out.println("Saving orders to file: " + fileName + " ... ");
 
         if (orders.isEmpty()) {
-            throw new FileExceptions("The list of orders is empty.");
+            throw new FileException("The list of orders is empty.");
         }
         if (cookBook == null) {
-            throw new FileExceptions("CookBook is null value - empty.");
+            throw new FileException("CookBook is null value - empty.");
         }
 
         int lineCounter = 0;
@@ -36,13 +39,13 @@ public class FileOperations {
                                     (order.isPaid() ? "paid" : "not paid yet"));
                     lineCounter++;
                 } else {
-                    throw new FileExceptions("The order contains non-existent food.");
+                    throw new FileException("The order contains non-existent food.");
                 }
             }
         } catch (FileNotFoundException e) {
-            throw new FileExceptions("File " + fileName + " not found!" + e.getLocalizedMessage());
+            throw new FileException("File " + fileName + " not found!" + e.getLocalizedMessage());
         } catch (IOException e) {
-            throw new FileExceptions("An error occurred when writing to a file. " + fileName + "!\n" + e.getLocalizedMessage());
+            throw new FileException("An error occurred when writing to a file. " + fileName + "!\n" + e.getLocalizedMessage());
         } finally {
             System.out.println("Count of rows: " + lineCounter);
         }
@@ -111,7 +114,7 @@ public class FileOperations {
 
     // ***** CookBook *****
 
-    public void saveCookBookToFile(CookBook cookBook, String fileName) throws FileExceptions {
+    public void saveCookBookToFile(CookBook cookBook, String fileName) throws FileException {
         System.out.println("Saving the cookbook to a file " + fileName + "...");
         int lineCounter = 0;
 
@@ -126,16 +129,16 @@ public class FileOperations {
                 lineCounter++;
             }
         } catch (FileNotFoundException e) {
-            throw new FileExceptions("The file " + fileName + " not found: " + e.getLocalizedMessage());
+            throw new FileException("The file " + fileName + " not found: " + e.getLocalizedMessage());
         } catch (IOException e) {
-            throw new FileExceptions("An error occurred when writing to a file: " + fileName + e.getLocalizedMessage());
+            throw new FileException("An error occurred when writing to a file: " + fileName + e.getLocalizedMessage());
         } finally {
             System.out.println("Count of rows: " + lineCounter);
         }
     }
 
 
-    public void loadCookBookFromFile(CookBook cookBook, String fileName) throws FileExceptions {
+    public void loadCookBookFromFile(CookBook cookBook, String fileName) throws FileException {
         System.out.println("Loading the CookBook from the file " + fileName + "...");
         int lineCounter = 0;
 
@@ -145,7 +148,7 @@ public class FileOperations {
                 String[] parts = line.split(getDelimiter());
 
                 if (parts.length != 5)
-                    throw new FileExceptions("Incorrect format on line " + (lineCounter + 1) + " in file " + fileName);
+                    throw new FileException("Incorrect format on line " + (lineCounter + 1) + " in file " + fileName);
 
                 int id = Integer.parseInt(parts[0]);
                 String title = parts[1];
@@ -157,11 +160,11 @@ public class FileOperations {
                 lineCounter++;
             }
         } catch (FileNotFoundException e) {
-            throw new FileExceptions(String.format("File not found: %s. %s", fileName, e.getLocalizedMessage()));
+            throw new FileException(String.format("File not found: %s. %s", fileName, e.getLocalizedMessage()));
         } catch (NumberFormatException e) {
-            throw new FileExceptions(String.format("Incorrect number format on line %d: %s", lineCounter, e.getLocalizedMessage()));
+            throw new FileException(String.format("Incorrect number format on line %d: %s", lineCounter, e.getLocalizedMessage()));
         } catch (Exception e) {
-            throw new FileExceptions(String.format("An error occurred when loading a menu from file %s (line %d): %s", fileName, lineCounter, e.getLocalizedMessage()));
+            throw new FileException(String.format("An error occurred when loading a menu from file %s (line %d): %s", fileName, lineCounter, e.getLocalizedMessage()));
         } finally {
             System.out.printf("Count of rows: %d%n", lineCounter);
         }

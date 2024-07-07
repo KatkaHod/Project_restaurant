@@ -1,6 +1,7 @@
-package CookBook_Orders_FileHandling;
+package com.restaurant.Tracking;
 
-import Settings.Settings;
+import com.Settings.Settings;
+import com.restaurantExceptions.OrderException;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
@@ -37,8 +38,6 @@ public class Order implements Comparable<Order> {
     }
 
 
-    // **** Get and Set methods ****
-
     public Dish getDish() {
         return dish;
     }
@@ -54,7 +53,6 @@ public class Order implements Comparable<Order> {
     }
 
 
-
     public void setOrderedTime(LocalDateTime orderedTime) throws OrderException {
         if (orderedTime == null) {
             throw new OrderException("Ordered time cannot be zero" + orderedTime);
@@ -67,8 +65,7 @@ public class Order implements Comparable<Order> {
 
 
     public void setFulfilmentTime(LocalDateTime fulfilmentTime) throws OrderException {
-        if (fulfilmentTime.isBefore(orderedTime))
-        {
+        if (fulfilmentTime.isBefore(orderedTime)) {
             throw new OrderException("The fulfilment time must not be earlier than the order time. Provided time: " + fulfilmentTime.format(DateTimeFormatter.ofPattern(Settings.getDateFormat())) + ".");
         }
         this.fulfilmentTime = fulfilmentTime;
@@ -76,7 +73,6 @@ public class Order implements Comparable<Order> {
     public LocalDateTime getFulfilmentTime() {
         return fulfilmentTime;
     }
-
 
 
     public void setTableNumber(int tableNumber) throws OrderException {
@@ -89,8 +85,6 @@ public class Order implements Comparable<Order> {
         return tableNumber;
     }
 
-
-    //Other methods
 
     public void markAsPaid() {
         this.paid = true;

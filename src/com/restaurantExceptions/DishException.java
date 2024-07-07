@@ -1,4 +1,4 @@
-package CookBook_Orders_FileHandling;
+package com.restaurantExceptions;
 import java.lang.Exception;
 
 public class DishException extends Exception{
