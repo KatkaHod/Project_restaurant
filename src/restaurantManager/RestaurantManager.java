@@ -3,6 +3,7 @@ package restaurantManager;
 import Tracking.Order;
 
 import java.time.Duration;
+import java.time.LocalDateTime;
 import java.util.List;
 
 public class RestaurantManager {
@@ -43,6 +44,16 @@ public class RestaurantManager {
     }
 
     //5.
+    public void TodayOrderedDishes(List<Order> ordersList) {
+        System.out.println("List of dishes ordered from today's date: ");
+
+        for (Order order : ordersList) {
+            if (order.getOrderedTime().isEqual(LocalDateTime.now())) {
+                System.out.println(order.getDish().getTitle());
+            }
+        }
+    }
+
 
 
 
