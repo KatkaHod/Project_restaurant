@@ -1,6 +1,7 @@
 package restaurantManager;
 
 import Tracking.Order;
+import restaurantExceptions.OrderException;
 
 import java.time.Duration;
 import java.time.LocalDateTime;
@@ -44,7 +45,7 @@ public class RestaurantManager {
     }
 
     //5.
-    public void TodayOrderedDishes(List<Order> ordersList) {
+    public void todayOrderedDishes(List<Order> ordersList) {
         System.out.println("List of dishes ordered from today's date: ");
 
         for (Order order : ordersList) {
@@ -53,6 +54,27 @@ public class RestaurantManager {
             }
         }
     }
+
+    //6. Export order list for one table
+    public void listOfOrdersForTable(List<Order> ordersList, int tableNumber) throws OrderException {
+        if (tableNumber <= 0) {
+            throw new OrderException("Table number must be at least >= 1. Provided table number: " + tableNumber);
+        }
+        System.out.println("Orders for table number: " + tableNumber);
+
+        List<Order> tableOrders = ordersList.stream()
+                .filter(order -> order.getTableNumber() = tableNumber)
+                .toList();
+
+        if (tableOrders.isEmpty()) {
+            System.out.println("No orders found for table number: " + tableNumber);
+        } else {
+            tableOrders.forEach(order -> System.out.println(order.getDish().getTitle()));
+        }
+    }
+
+
+
 
 
 
