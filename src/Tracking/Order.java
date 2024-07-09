@@ -36,6 +36,14 @@ public class Order implements Comparable<Order> {
         this(dish, quantity, LocalDateTime.now(), null, tableNumber, false);
     }
 
+    public Order() {
+        this.dish = null;
+        this.quantity = 0;
+        this.orderedTime = null;
+        this.fulfilmentTime = null;
+        this.tableNumber = 0;
+        this.paid = false;
+    }
 
     public Dish getDish() {
         return dish;

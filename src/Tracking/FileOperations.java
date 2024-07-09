@@ -14,6 +14,10 @@ import static Tracking.Settings.getDelimiter;
 
 public class FileOperations {
 
+    public FileOperations() {
+    }
+
+
     // ***** Orders *****
 
     public void saveOrdersToFile(List<Order> orders,CookBook cookBook, String fileName) throws FileException {

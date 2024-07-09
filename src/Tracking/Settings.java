@@ -3,9 +3,9 @@ package Tracking;
 public class Settings {
     private static final String DEFAULT_IMAGE = "blank";
     private static final String DELIMITER = "\t";
-    private static final String FILE_NAME_ORDERS = "resources/orders.txt";
-    private static final String FILE_NAME_COOKBOOK = "resources/cookbook.txt";
-    private static final String FILE_NAME_SUMMARY = "resources/summaryTable";
+    private static final String FILE_NAME_ORDERS = "Tracking/orders.txt";
+    private static final String FILE_NAME_COOKBOOK = "Tracking/cookbook.txt";
+    private static final String FILE_NAME_SUMMARY = "Tracking/summaryTable";
 
 
     //The date and time format for order
