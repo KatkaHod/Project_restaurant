@@ -56,22 +56,23 @@ public class RestaurantManager {
     }
 
     //6. Export order list for one table
-    public void listOfOrdersForTable(List<Order> ordersList, int tableNumber) throws OrderException {
-        if (tableNumber <= 0) {
-            throw new OrderException("Table number must be at least >= 1. Provided table number: " + tableNumber);
+    public String getOrdersForTable(List<Order> orders, int tableNumber) throws OrderException {
+        if (tableNumber <= 1) {
+            throw new OrderException("Number of table must be at least greater than 1. Provided table: " + tableNumber);
         }
-        System.out.println("Orders for table number: " + tableNumber);
 
-        List<Order> tableOrders = ordersList.stream()
-                .filter(order -> order.getTableNumber() = tableNumber)
-                .toList();
+        String result = "** Orders for table no. " + String.format("%02d", tableNumber) + " **\n****\n";
 
-        if (tableOrders.isEmpty()) {
-            System.out.println("No orders found for table number: " + tableNumber);
-        } else {
-            tableOrders.forEach(order -> System.out.println(order.getDish().getTitle()));
-        }
+        result += orders.stream()
+                .filter(order -> order.getTableNumber() == tableNumber)
+                .map(Order::toString)
+                .reduce("", (acc, order) -> acc + order + "\n");
+
+        result += "******";
+        return result;
     }
+
+
 
 
 
