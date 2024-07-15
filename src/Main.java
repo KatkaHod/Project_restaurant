@@ -87,34 +87,28 @@ public class Main {
             System.err.println("Error: " + e.getLocalizedMessage());
         }
 
-        //5.
+        //5. save orders to file
 
+        try {
+            fileOperations.saveCookBookToFile(cookBook,fileCookBook);
+            fileOperations.saveOrdersToFile(orders.getOrders(), cookBook, fileOrders);
+        } catch (FileException e) {
+            System.out.println("Error: " + e.getMessage());
+        }
 
+        //6. load orders from the file
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+        try {
+            fileOperations.loadCookBookFromFile(cookBook,fileCookBook);
+            fileOperations.loadOrdersFromFile(orders.getOrders(), cookBook, fileOrders);
+        } catch (OrderException |FileException e) {
+            System.out.println("Error: " + e.getMessage());
+        }
 
 
 
 
     }
-
-
 
 
 
