@@ -29,7 +29,9 @@ public class Main {
         }
 
 
-        //2. Add dishes to CookBook
+        //2. Add testing data
+
+        //#Dishes
         try {
             cookBook.addDish(new Dish("Chicken fillet 150 g", BigDecimal.valueOf(250), 45, "Chicken-fillet "));
             cookBook.addDish(new Dish("Fries 150 g", BigDecimal.valueOf(120), 20, "Fries"));
@@ -39,7 +41,7 @@ public class Main {
             System.out.println("Error: " + e.getMessage());
         }
 
-        //3. Create new orders for table 15 and table 2 - Drinks for both orders are be served immediately
+        //#Orders - for table 15 and table 2 - Drinks for both orders are be served immediately
         try {
             orders.addOrder(new Order(cookBook.getDish(1),2,15));
             orders.addOrder(new Order(cookBook.getDish(2),2,15));
@@ -52,6 +54,23 @@ public class Main {
         } catch (OrderException | CookBookException e) {
             System.out.println("Error: " + e.getMessage());
         }
+
+        //3. Total price for table 15 and 2
+        try {
+            System.out.println(restaurantManager.getOrdersForTable(orders.getOrders(),15));
+        } catch (OrderException e) {
+            System.out.println("Error: " + e.getMessage());
+        }
+
+        try {
+            System.out.println(restaurantManager.getOrdersForTable(orders.getOrders(),2));
+        } catch (OrderException e) {
+            System.out.println("Error: " + e.getMessage());
+        }
+
+        //4. Information for the Management
+
+
 
 
 
