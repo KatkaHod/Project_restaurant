@@ -1,6 +1,7 @@
 package restaurantManager;
 
 import Tracking.Order;
+import Tracking.Orders;
 import restaurantExceptions.OrderException;
 
 import java.time.Duration;
@@ -70,6 +71,16 @@ public class RestaurantManager {
 
         result += "******";
         return result;
+    }
+
+    public void completeOrderStatistics(List<Order> orders) {
+        Orders completeStatistics = new Orders();
+
+        countPendingOrders(completeStatistics.getOrders());
+        countUnfinishedOrders(completeStatistics.getOrders());
+        sortOrdersByOrderTime(completeStatistics.getOrders());
+        calculateAverageFulfilmentTime(completeStatistics.getOrders());
+        todayOrderedDishes(completeStatistics.getOrders());
     }
 
 

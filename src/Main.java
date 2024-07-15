@@ -71,11 +71,7 @@ public class Main {
 
         //4. Information for the Management
 
-        restaurantManager.countPendingOrders(orders.getOrders());
-        restaurantManager.countUnfinishedOrders(orders.getOrders());
-        restaurantManager.sortOrdersByOrderTime(orders.getOrders());
-        restaurantManager.calculateAverageFulfilmentTime(orders.getOrders());
-        restaurantManager.todayOrderedDishes(orders.getOrders());
+        restaurantManager.completeOrderStatistics(orders.getOrders());
 
         //get order list by table number - 15
         try {
@@ -90,6 +86,8 @@ public class Main {
         } catch (OrderException e) {
             System.err.println("Error: " + e.getLocalizedMessage());
         }
+
+        //5.
 
 
 
