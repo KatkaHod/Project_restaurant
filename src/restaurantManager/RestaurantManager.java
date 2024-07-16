@@ -6,6 +6,7 @@ import restaurantExceptions.OrderException;
 
 import java.time.Duration;
 import java.time.LocalDateTime;
+import java.time.temporal.ChronoUnit;
 import java.util.List;
 
 public class RestaurantManager {
@@ -50,7 +51,7 @@ public class RestaurantManager {
         System.out.println("List of dishes ordered from today's date: ");
 
         for (Order order : ordersList) {
-            if (order.getOrderedTime().isEqual(LocalDateTime.now())) {
+            if (order.getOrderedTime().isAfter(LocalDateTime.now().truncatedTo(ChronoUnit.DAYS))) {
                 System.out.println(order.getDish().getTitle());
             }
         }
