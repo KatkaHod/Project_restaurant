@@ -29,10 +29,10 @@ public class Main {
 
         //#Dishes
         try {
-            cookBook.addDish(new Dish("Chicken fillet 150 g", BigDecimal.valueOf(250), 45, "Chicken-fillet "));
-            cookBook.addDish(new Dish("Fries 150 g", BigDecimal.valueOf(120), 20, "Fries"));
-            cookBook.addDish(new Dish("Trout on wine 200 g", BigDecimal.valueOf(400), 45,"Trout-on-wine "));
-            cookBook.addDish(new Dish("Kofola drink 0,5 l", BigDecimal.valueOf(50), 5, "Kofola"));
+            cookBook.addDish(new Dish("Chicken fillet 150 g ", BigDecimal.valueOf(250), 45, "Chicken-fillet "));
+            cookBook.addDish(new Dish("Fries 150 g ", BigDecimal.valueOf(120), 20, "Fries"));
+            cookBook.addDish(new Dish("Trout on wine 200 g ", BigDecimal.valueOf(400), 45,"Trout-on-wine "));
+            cookBook.addDish(new Dish("Kofola drink 0,5 l ", BigDecimal.valueOf(50), 5, "Kofola"));
         } catch (CookBookException | DishException e) {
             System.err.println("Error: " + e.getMessage());
         }
@@ -52,7 +52,7 @@ public class Main {
             System.err.println("Error: " + e.getMessage());
         }
 
-        //3. Total price for table 15 and 2
+        //3. Order for table 15 and 2
         try {
             System.out.println(restaurantManager.getOrdersForTable(orders.getOrders(),15));
         } catch (OrderException e) {
@@ -68,6 +68,11 @@ public class Main {
         //4. Information for the Management
 
         restaurantManager.completeOrderStatistics(orders.getOrders());
+
+        System.out.println(restaurantManager.countPendingOrders(orders.getOrders()));
+        System.out.println(restaurantManager.countUnfinishedOrders(orders.getOrders()));
+        System.out.println(restaurantManager.calculateAverageFulfilmentTime(orders.getOrders()));
+        System.out.println(restaurantManager.todayOrderedDishes(orders.getOrders()));
 
         //get order list by table number - 15
         try {

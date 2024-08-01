@@ -4,6 +4,7 @@ import java.time.Duration;
 import java.time.LocalDateTime;
 import java.time.temporal.ChronoUnit;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class RestaurantManager {
 
@@ -43,15 +44,20 @@ public class RestaurantManager {
     }
 
     //5.
-    public void todayOrderedDishes(List<Order> ordersList) {
-        System.out.println("List of dishes ordered from today's date: ");
+    public List<Order> todayOrderedDishes(List<Order> ordersList) {
+        LocalDateTime startOfToday = LocalDateTime.now().truncatedTo(ChronoUnit.DAYS);
+        LocalDateTime endOfToday = startOfToday.plusDays(1);
 
-        for (Order order : ordersList) {
-            if (order.getOrderedTime().isAfter(LocalDateTime.now().truncatedTo(ChronoUnit.DAYS))) {
-                System.out.println(order.getDish().getTitle());
-            }
-        }
+        List<Order> todaysOrders = ordersList.stream()
+                .filter(order -> order.getOrderedTime().isAfter(startOfToday) && order.getOrderedTime().isBefore(endOfToday))
+                .collect(Collectors.toList());
+
+        System.out.println("List of dishes ordered from today's date: ");
+        todaysOrders.forEach(order -> System.out.println(order.getDish().getTitle()));
+
+        return todaysOrders;
     }
+
 
     //6. Print the list of orders for one table
     public String getOrdersForTable(List<Order> orders, int tableNumber) throws OrderException {
