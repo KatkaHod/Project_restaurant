@@ -11,11 +11,8 @@ import static restaurant_order_system.Settings.getDelimiter;
 
 public class FileOperations {
 
-    public FileOperations() {
-    }
-
-
-    // ***** Orders *****
+    //public FileOperations() {
+    //}
 
     public void saveOrdersToFile(List<Order> orders, CookBook cookBook, String fileName) throws FileException {
         System.out.println("Saving orders to file: " + fileName + " ... ");
@@ -81,7 +78,6 @@ public class FileOperations {
                 }
 
                 boolean isPaid;
-
                 switch (parts[5]) {
                     case "paid" -> isPaid = true;
                     case "not paid" -> isPaid = false;
@@ -93,7 +89,7 @@ public class FileOperations {
                             cookBook.getDishById(dishId),
                             quantity,
                             orderedTime,
-                            fulfilmentTime != null ? fulfilmentTime : null,
+                            fulfilmentTime,
                             tableNumber,
                             isPaid
                     ));
@@ -109,11 +105,13 @@ public class FileOperations {
             throw new OrderException(String.format("Error during file read process: %s", e.getMessage()));
         } catch (IllegalArgumentException e) {
             throw new OrderException(String.format("Unknown category: %s", e.getMessage()));
-        }
+        } catch (Exception e) {
+            throw new OrderException(String.format("An error occurred when loading a menu from file %s (line %d): %s", fileName, lineCounter, e.getLocalizedMessage()));
+        }  finally {
+        System.out.printf("Count of rows: %d%n", lineCounter);
+       }
     }
 
-
-    // ***** CookBook *****
 
     public void saveCookBookToFile(CookBook cookBook, String fileName) throws FileException {
         System.out.println("Saving the cookbook to a file " + fileName + "...");

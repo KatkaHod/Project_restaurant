@@ -31,7 +31,7 @@ public class Order implements Comparable<Order> {
         this.paid = paid;
     }
     public Order(Dish dish, int quantity, int tableNumber) throws OrderException {
-        this(dish, quantity, LocalDateTime.now(), null, tableNumber, false);
+        this(dish, quantity, LocalDateTime.now(), LocalDateTime.now(), tableNumber, false);
     }
 
     public Order() {

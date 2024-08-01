@@ -8,10 +8,6 @@ public class Settings {
     private static final String FILE_NAME_SUMMARY = "resources/summaryTable.txt";
 
     // ? private static final String FILE_NAME_ORDERS = "src\\resources\\orders.txt";
-
-
-
-    //The date and time format for order
     private static final String DATE_FORMAT = "d.M. H:m";
     private static final String TIME_FORMAT = "HH:mm";
 

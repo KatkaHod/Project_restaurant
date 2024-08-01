@@ -55,7 +55,7 @@ public class RestaurantManager {
 
     //6. Print the list of orders for one table
     public String getOrdersForTable(List<Order> orders, int tableNumber) throws OrderException {
-        if (tableNumber <= 1) {
+        if (tableNumber < 1) {
             throw new OrderException("Number of table must be at least greater than 1. Provided table: " + tableNumber);
         }
 
