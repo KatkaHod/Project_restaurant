@@ -1,11 +1,14 @@
-package Tracking;
+package restaurant_order_system;
 
 public class Settings {
     private static final String DEFAULT_IMAGE = "blank";
     private static final String DELIMITER = "\t";
-    private static final String FILE_NAME_ORDERS = "src\\resources\\orders.txt";
-    private static final String FILE_NAME_COOKBOOK = "src\\resources\\cookbook.txt";
-    private static final String FILE_NAME_SUMMARY = "src\\resources\\summaryTable.txt";
+    private static final String FILE_NAME_ORDERS = "resources/orders.txt";
+    private static final String FILE_NAME_COOKBOOK = "resources/cookbook.txt";
+    private static final String FILE_NAME_SUMMARY = "resources/summaryTable.txt";
+
+    // ? private static final String FILE_NAME_ORDERS = "src\\resources\\orders.txt";
+
 
 
     //The date and time format for order
