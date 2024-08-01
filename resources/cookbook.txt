@@ -1,0 +1,12 @@
+1	Chicken fillet 150 g 	250	45	Chicken-fillet 
+2	Fries 150 g 	120	20	Fries
+3	Trout on wine 200 g 	400	45	Trout-on-wine 
+4	Kofola drink 0,5 l 	50	5	Kofola
+5	Chicken fillet 150 g 	250	45	Chicken-fillet 
+6	Fries 150 g 	120	20	Fries
+7	Trout on wine 200 g 	400	45	Trout-on-wine 
+8	Kofola drink 0,5 l 	50	5	Kofola
+9	Chicken fillet 150 g 	250	45	Chicken-fillet 
+10	Fries 150 g 	120	20	Fries
+11	Trout on wine 200 g 	400	45	Trout-on-wine 
+12	Kofola drink 0,5 l 	50	5	Kofola

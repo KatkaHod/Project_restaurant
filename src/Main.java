@@ -67,10 +67,9 @@ public class Main {
 
         //4. Information for the Management
 
-        restaurantManager.completeOrderStatistics(orders.getOrders());
-
         System.out.println(restaurantManager.countPendingOrders(orders.getOrders()));
         System.out.println(restaurantManager.countUnfinishedOrders(orders.getOrders()));
+        System.out.println(restaurantManager.sortOrdersByOrderTime(orders.getOrders()));
         System.out.println(restaurantManager.calculateAverageFulfilmentTime(orders.getOrders()));
         System.out.println(restaurantManager.todayOrderedDishes(orders.getOrders()));
 

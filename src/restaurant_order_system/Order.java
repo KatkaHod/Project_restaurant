@@ -8,9 +8,10 @@ public class Order implements Comparable<Order> {
 
 
     // Mandatory - Override the compareTo method to enable comparison of Order objects
+
     @Override
-    public int compareTo(Order o) {
-        return 0;
+    public int compareTo(Order other) {
+        return this.orderedTime.compareTo(other.orderedTime);
     }
 
     private Dish dish;

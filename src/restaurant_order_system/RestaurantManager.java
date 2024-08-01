@@ -5,6 +5,7 @@ import java.time.LocalDateTime;
 import java.time.temporal.ChronoUnit;
 import java.util.List;
 import java.util.stream.Collectors;
+import java.util.ArrayList;
 
 public class RestaurantManager {
 
@@ -27,8 +28,10 @@ public class RestaurantManager {
     }
 
     //3. Orders sorted by time
-    public void sortOrdersByOrderTime(List<Order> orders) {
-        orders.sort((order1, order2) -> order1.getOrderedTime().compareTo(order2.getOrderedTime()));
+    public List<Order> sortOrdersByOrderTime(List<Order> orders) {
+        List<Order> sortedOrders = new ArrayList<>(orders);
+        sortedOrders.sort(null);
+        return sortedOrders;
     }
 
     //4. average fulfilment time in minutes
@@ -76,15 +79,6 @@ public class RestaurantManager {
         return result;
     }
 
-    public void completeOrderStatistics(List<Order> orders) {
-        Orders completeStatistics = new Orders();
-
-        countPendingOrders(completeStatistics.getOrders());
-        countUnfinishedOrders(completeStatistics.getOrders());
-        sortOrdersByOrderTime(completeStatistics.getOrders());
-        calculateAverageFulfilmentTime(completeStatistics.getOrders());
-        todayOrderedDishes(completeStatistics.getOrders());
-    }
 
 
 }
