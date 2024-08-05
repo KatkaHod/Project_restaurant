@@ -80,7 +80,7 @@ public class FileOperations {
                 boolean isPaid;
                 switch (parts[5]) {
                     case "paid" -> isPaid = true;
-                    case "not paid" -> isPaid = false;
+                    case "not paid yet" -> isPaid = false;
                     default -> throw new OrderException(String.format("Error format on line %d in file %s!", lineCounter + 1, fileName));
                 }
 
